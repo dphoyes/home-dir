@@ -1,0 +1,39 @@
+#!/bin/zsh
+
+alias tmux_break='touch /tmp/tmux_break && exit'
+
+alias ls='ls --color=auto'
+alias gvim='gvim -p'
+alias octave='octave -q'
+alias scons='scons -Q'
+alias dedebtify_flat='/hdd/media/Dropbox/Flat/Debts/dedebtify_flat'
+alias upgrade='yaourt -Syu --aur --noconfirm'
+alias upgradefull='yaourt -Syu --aur --noconfirm --devel'
+alias hsconnect='sudo sshfs dphoyes@hoyes.dyndns.org:/ /media/hoyesserver -o allow_other'
+alias sdcard_hocuspocus="sudo su -c 'echo 1 > /sys/bus/pci/rescan'"
+alias update-mirrorlist="sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup && sudo reflector -c 'United Kingdom' -l 5 --sort rate --save /etc/pacman.d/mirrorlist && less /etc/pacman.d/mirrorlist"
+
+alias disk_usage="df -h / /hdd/* /ssd/*"
+
+alias rossource="source /home/dphoyes/devel/EIE/EIE4/HCR/workspace/devel/setup.zsh"
+
+alias ros='cd ~/devel/EIE/EIE4/HCR/workspace/; source devel/setup.zsh'
+alias catkin_make='catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python2 -DPYTHON_INCLUDE_DIR=/usr/include/python2.7 -DPYTHON_LIBRARY=/usr/lib/libpython2.7.so'
+alias catkin_make_isolated='catkin_make_isolated -DPYTHON_EXECUTABLE=/usr/bin/python2 -DPYTHON_INCLUDE_DIR=/usr/include/python2.7 -DPYTHON_LIBRARY=/usr/lib/libpython2.7.so'
+
+# iPlayer
+alias iplayer="get_iplayer -o /hdd/media/TV --nocopyright --subtitles --nopurge" 
+alias iplayerdl="iplayer -g"
+alias iplayerdl1="iplayer --modes flashlow -g"
+alias iplayerdl2="iplayer --modes flashnormal -g"
+alias iplayerdl3="iplayer --modes flashstd -g"
+alias iplayerdl4="iplayer --modes flashhigh -g"
+alias iplayerdl5="iplayer --modes flashvhigh -g"
+alias iplayerdl6="iplayer --modes flashhd -g"
+
+# Steam
+#alias  steam='env WINEPREFIX="/home/dphoyes/.local/share/wineprefixes/steam" wine C:\\\\windows\\\\command\\\\start.exe /Unix /home/dphoyes/.local/share/wineprefixes/steam/dosdevices/c:/users/Public/Desktop/Steam.lnk'
+alias   steam-wine='env WINEPREFIX="/home/dphoyes/.local/share/wineprefixes/steam" wine C:\\\\Program\ Files\\\\Steam\\\\steam.exe'
+alias  portal-wine='env WINEPREFIX="/home/dphoyes/.local/share/wineprefixes/steam" wine C:\\\\windows\\\\command\\\\start.exe steam://rungameid/400'
+alias portal2-wine='env WINEPREFIX="/home/dphoyes/.local/share/wineprefixes/steam" wine C:\\\\windows\\\\command\\\\start.exe steam://rungameid/620'
+

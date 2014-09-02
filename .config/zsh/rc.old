@@ -1,0 +1,74 @@
+#!/bin/zsh
+
+# Start tmux
+if [ `whoami` = "dphoyes" ]; then
+  if [ $TERM != screen ] || [ -z $TMUX ]; then
+    if [ -z $tmux_break ]; then
+      tmux_auto
+      if [ -f /tmp/tmux_break ]; then
+        rm /tmp/tmux_break
+      else 
+        exit
+      fi
+    fi
+  fi
+fi
+
+. ~/.config/zsh/functions
+
+fpath=(~/.config/zsh/completion $fpath) 
+autoload -U compinit promptinit
+compinit
+promptinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.cache/zsh
+
+# key bindings
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
+bindkey "\e[5~" beginning-of-history
+bindkey "\e[6~" end-of-history
+bindkey "\e[3~" delete-char
+bindkey "\e[2~" quoted-insert
+bindkey "\e[5C" forward-word
+bindkey "\eOc" emacs-forward-word
+bindkey "\e[5D" backward-word
+bindkey "\eOd" emacs-backward-word
+bindkey "\e\e[C" forward-word
+bindkey "\e\e[D" backward-word
+bindkey "^H" backward-delete-wordsour
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
+# for rxvt
+bindkey "\e[8~" end-of-line
+bindkey "\e[7~" beginning-of-line
+# for non RH/Debian xterm, can't hurt for RH/DEbian xterm
+bindkey "\eOH" beginning-of-line
+bindkey "\eOF" end-of-line
+# for freebsd console
+bindkey "\e[H" beginning-of-line
+bindkey "\e[F" end-of-line
+# completion in the middle of a line
+bindkey '^i' expand-or-complete-prefix
+
+## Terminal Colours ##
+autoload colors zsh/terminfo
+[[ "$terminfo[colors]" -ge 8 ]] && colors
+for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+        eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+        eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
+        export PR_$color
+        export PR_LIGHT_$color
+done
+export PR_NO_COLOR="%{$terminfo[sgr0]%}"
+
+. ~/.config/zsh/.precmd_colours
+
+function precmd()
+{
+    export PROMPT="%(?..${PR_RED}[${PR_WHITE}%?${PR_RED}] ${PR_WHITE}:( $prompt_newline)%b`[ $UID != 0 ] && echo $USERNAME_COLOUR || echo $ROOT_COLOUR`%n@${HOSTNAME_COLOUR}%m${PR_NO_COLOR}> "
+    export RPROMPT="`[[ -w \`pwd\` ]] && echo "$PR_LIGHT_GREEN" || echo "$PR_RED"`%~ ${PR_WHITE}| %D{%H:%M}${PR_NO_COLOR}"
+    rehash
+}

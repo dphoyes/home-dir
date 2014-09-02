@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+[ $DISPLAY ] && export EDITOR=subl-wait || export EDITOR=vim
+[ -f devel/setup.zsh ] && source devel/setup.zsh
+

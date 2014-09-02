@@ -1,0 +1,44 @@
+#!/bin/zsh
+
+# Start tmux
+if which tmux >/dev/null; then
+  if [ `whoami` = "dphoyes" ]; then
+    if [ $TERM != screen ] || [ -z $TMUX ]; then
+      if [ -z $tmux_break ]; then
+        tmux_auto
+        if [ -f /tmp/tmux_break ]; then
+          rm /tmp/tmux_break
+        else 
+          exit
+        fi
+      fi
+    fi
+  fi
+fi
+
+# CASE_SENSITIVE="true"
+DISABLE_AUTO_UPDATE="true"
+# export UPDATE_ZSH_DAYS=13
+# DISABLE_LS_COLORS="true"
+DISABLE_AUTO_TITLE="true"
+DISABLE_CORRECTION="true"
+# COMPLETION_WAITING_DOTS="true"
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+ZSH_TMUX_AUTOSTART=true
+
+ZSH=/usr/share/oh-my-zsh/
+ZSH_CUSTOM=$XDG_CONFIG_HOME/zsh/oh-my-zsh
+ZSH_THEME="dphoyes"
+plugins=(git composer command-not-found symfony2 chpwd_profiles)
+source $ZSH/oh-my-zsh.sh
+
+fpath=(~/.config/zsh/completion $fpath)
+. $ZDOTDIR/functions
+eval "`dircolors -b ~/.dircolors`"
+
+unalias sl
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+setopt no_share_history inc_append_history extended_history
+

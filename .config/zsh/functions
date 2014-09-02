@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+hosted+r()
+{
+  ssh davidhoyes.co.uk chmod +r davidhoyes.co.uk/www/$1
+}
+
+timer()
+{
+    start=$((`date +%s%N`/1000000))
+    $*
+    stop=$((`date +%s%N`/1000000))
+
+    duration=$[$stop - $start]
+    echo "Duration: $duration ms"
+}
+
+
+gccrun()
+{
+	gcc *.c && ./a.out
+}
+
+g++run()
+{
+    g++ *.cpp && ./a.out
+}
