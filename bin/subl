@@ -1,0 +1,31 @@
+#!/bin/zsh
+
+export LD_LIBRARY_PATH=/opt/sublime-text/lib
+BIN="/opt/sublime-text/sublime_text"
+ARGS=("--class=sublime-text")
+
+if pgrep sublime_text >/dev/null; then
+    subl_running=true
+else
+    subl_running=false
+fi
+
+if [[ ${1:(-16)} == ".sublime-project" ]]; then
+    ARGS+=("--project")
+fi
+
+if ! [ $# -eq 0 ] || $subl_running; then
+    # echo new
+    ARGS=("-n")
+fi
+
+# echo $BIN $ARGS $*
+
+if echo $* | grep -qE "(^| )\-[^ ]*w"; then
+    # echo here
+    $BIN $ARGS $* > /dev/null 2>&1
+else
+    # echo there
+    $BIN $ARGS $* > /dev/null 2>&1 &
+fi
+

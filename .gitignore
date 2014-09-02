@@ -5,7 +5,14 @@
 !/.gitignore
 !/.zshenv
 !/.tmux.conf
+
 !/.config
 /.config/*
 !/.config/zsh/
 !/.config/python/
+
+!/bin
+/bin/*
+!/bin/fiweor
+!/bin/subl
+!/bin/subl-wait

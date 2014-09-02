@@ -1,0 +1,86 @@
+#!/bin/zsh
+
+#alias wmctrl='wmctrl_compiz'
+#dphoyes@maelstrom> xprop _KDE_NET_WM_ACTIVITIES
+#_KDE_NET_WM_ACTIVITIES(STRING) = "5e09a6c4-7d54-40ab-8e5e-1d687d3acd7c"
+#dphoyes@maelstrom> xprop _KDE_NET_WM_ACTIVITIES
+#_KDE_NET_WM_ACTIVITIES(STRING) = "ALL"
+#
+#dphoyes@maelstrom> qdbus org.kde.kactivitymanagerd /ActivityManager org.kde.ActivityManager.CurrentActivity                          
+#5e09a6c4-7d54-40ab-8e5e-1d687d3acd7c
+#dphoyes@maelstrom> qdbus org.kde.kactivitymanagerd /ActivityManager org.kde.ActivityManager.SetCurrentActivity 18b70f58-5537-40f0-96ac-c30686459dc8
+#true
+
+
+usage="Usage: fiweor -s|g|c [-fxi] [-p PATTERN] COMMAND"
+help="$usage
+
+\"Focus if window exists, otherwise run\"
+
+If PATTERN matches the name of a window which is currently open, that window
+is pulled into focus. Otherwise, COMMAND is run. The purpose is to avoid
+opening new instances of graphical programs when there is already one running.
+
+PATTERN is an extended regular expression which is processed by grep on the
+output of \`wmctrl -l\`. A match can be made against any part of each line
+after the workspace number on that line.
+
+Options:
+	-s - Summon the matching window to the current workspace.
+	-g - Go to the workspace of the matching window.
+	-c - Only search for windows on the current workspace.
+	
+  -a - Only search for windows in the current KDE activity.
+	-m - If the specified window is already in focus, create a new window.
+  -t - If the specified window is already in focus, close it instead (toggle).
+	-f - Upon creation of a new window, force that window to be pulled into
+	     focus if it isn't by default. Can cause strange behaviour.
+	-x - Add -x to the \`wmctrl -l\` command; this allows you to match by
+	     WM_CLASS as well as by Window Title.
+	-i - Add -p to the \`wmctrl -l\` command; this allows you to match by
+	     process ID as well as by Window Title.
+	-p PATTERN - Specifies the pattern describing the window to be matched. If
+	     omitted, COMMAND is always run.
+	-h - Display this text and exit.
+"
+
+[ -z $1 ] && echo "No parameters given. Try running with -h\n$usage" && exit 1
+
+while getopts "sgfcatmxip:h" opt; do
+	case $opt in
+		s)	mode="R";;
+		g)	mode="a";;
+		f)	forceFocus=1;;
+		c)	mode="a"; currentWS=`wmctrl -d | grep '*' | cut -d ' ' -f 1`;;
+    a)  requireSameActivity=true;;
+		m)	repeatAction="open_many"; currentWin=`xdotool getactivewindow`;;
+		t)	repeatAction="toggle"; currentWin=`xdotool getactivewindow`;;
+		x)	Args=x$Args;;
+		i)	Args=p$Args;;
+		p)	pattern="$OPTARG";;
+		h)	echo $help; exit 0;;
+		?)	echo $usage; exit 1;;
+	esac
+done
+shift $(($OPTIND - 1))
+
+[ -z $mode ] && echo "Must specify either -s, -g or -c\n$usage" && exit 1
+[ -z "$*" ] && echo "Must specify COMMAND\n$usage" && exit 1
+
+[ $pattern ] && winID=`wmctrl -l$Args | grep -E "^\S+\s+($currentWS|-1).*$pattern" | cut -d ' ' -f 1`
+[ `echo $winID | wc -l` -gt 1 ] && echo "Warning: multiple window instances matched PATTERN; the first one will be used" && winID=`echo $winID | head -n 1`
+
+[ $winID ] && wmctrl -i$mode $winID
+if [ $winID ] && [ "$repeatAction" = "toggle" ] && [[ $currentWin -eq $winID ]]; then
+  wmctrl -ic $winID
+elif [ -z $winID ] || ([ "$repeatAction" = "open_many" ] && [[ $currentWin -eq $winID ]]); then
+	[ $forceFocus ] && lastOpened=`wmctrl -l | tail -n 1 | cut -d ' ' -f 1`
+	$* &
+	if [ $forceFocus ]; then
+		while [ "$lastOpened" = "`wmctrl -l | tail -n 1 | cut -d ' ' -f 1`" ]; do
+			sleep 1
+		done
+		wmctrl -i$mode `wmctrl -l | tail -n 1 | cut -d ' ' -f 1`
+	fi
+fi
+return 0
