@@ -16,3 +16,6 @@
 !/bin/fiweor
 !/bin/subl
 !/bin/subl-wait
+
+!/.vimrc
+!/.vim

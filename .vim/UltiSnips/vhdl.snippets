@@ -1,0 +1,122 @@
+
+snippet lib "library"
+library ${1:ieee};
+endsnippet
+
+snippet use "use"
+use ${1:ieee.std_logic_1164.all};
+endsnippet
+
+snippet ent "entity"
+entity ${1:`!p snip.rv = snip.basename or "untitled"`} is
+end entity $1;
+endsnippet
+
+snippet port "port"
+port (
+    ${1}
+);
+endsnippet
+
+snippet in "in"
+${1:clk} : in ${2:std_logic}
+endsnippet
+
+snippet out "out"
+${1:result} : out ${2:std_logic}
+endsnippet
+
+snippet arch "architecture"
+architecture rtl of ${1:`!p snip.rv = snip.basename or "untitled"`} is
+begin
+    $2
+end architecture rtl;
+endsnippet
+
+snippet inst "entity instantiation"
+$1 : entity $2
+    port map (
+        $3
+    );
+endsnippet
+
+snippet proc "process"
+$1 : process
+begin
+    $2
+end process $1;
+endsnippet
+
+snippet wu "wait until"
+wait until clk'event and clk = '1';
+endsnippet
+
+snippet if "if"
+if $1 then
+    $2
+end if;
+endsnippet
+
+snippet else "else"
+else
+    $1
+endsnippet
+
+snippet elsif "elsif"
+elsif $1
+    $2
+endsnippet
+
+snippet case "case"
+case $1 is
+    $2
+end case;
+endsnippet
+
+snippet when "when"
+when $1 => 
+endsnippet
+
+snippet for "for loop"
+for ${1:i} in $2 loop
+    $3
+end loop;
+endsnippet
+
+snippet o2z "others to zero"
+(others => '0')
+endsnippet
+
+snippet o2o "others to one"
+(others => '1')
+endsnippet
+
+snippet sig "signal"
+signal $1 : $2;
+endsnippet
+
+snippet var "variable"
+variable $1 : $2;
+endsnippet
+
+snippet const "constant"
+constant $1 : $2 := $3;
+endsnippet
+
+snippet sl "std_logic"
+std_logic
+endsnippet
+
+snippet slv "std_logic_vector"
+std_logic_vector(${1:31} downto ${2:0})
+endsnippet
+
+snippet usg "unsigned"
+unsigned(${1:31} downto ${2:0})
+endsnippet
+
+snippet sg "signed"
+signed(${1:31} downto ${2:0})
+endsnippet
+
+

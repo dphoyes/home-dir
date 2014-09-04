@@ -1,0 +1,101 @@
+extends c
+
+###########################################################################
+#                            TextMate Snippets                            #
+###########################################################################
+snippet inc "#include local header (inc)" !
+#include "${1:`!p snip.rv = snip.basename`}.hpp"
+endsnippet
+
+snippet Inc "#include <> (Inc)" !
+#include <${1:}>
+endsnippet
+
+snippet beginend "$1.begin(), $1.end() (beginend)" !
+${1:v}${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}begin(), $1${1/^.*?(-)?(>)?$/(?2::(?1:>:.))/}end()
+endsnippet
+
+snippet class "class .. (class)" !
+class ${1:`!p snip.rv = snip.basename or "name"`}
+{
+private:
+	${2:/*data members*/}
+
+public:
+	${1/(\w+).*/$1/}(${3:arguments});
+	~${1/(\w+).*/$1/}();
+};
+
+${1/(\w+).*/$1/}::${1/(\w+).*/$1/}($3)
+{
+}
+
+${1/(\w+).*/$1/}::~${1/(\w+).*/$1/}()
+{
+}
+endsnippet
+
+snippet ns "namespace .. (namespace)" !
+namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`}
+{
+	$0
+}${1/.+/ \/* /m}$1${1/.+/ *\/ /m}
+endsnippet
+
+snippet readfile "read file (readF)" !
+std::vector<char> v;
+if (FILE *fp = fopen(${1:"filename"}, "r"))
+{
+	char buf[1024];
+	while(size_t len = fread(buf, 1, sizeof(buf), fp))
+		v.insert(v.end(), buf, buf + len);
+	fclose(fp);
+}
+endsnippet
+
+snippet map "std::map (map)" !
+std::map<${1:key}, ${2:value}> map$0;
+endsnippet
+
+snippet vector "std::vector (v)" !
+std::vector<${1:char}> v$0;
+endsnippet
+
+snippet tp "template <typename ..> (template)" !
+template <typename ${1:_InputIter}>
+endsnippet
+
+snippet mfunc "External Member Function Declaration"
+/*
+ * $3
+ */
+  $1 $3($4);
+${1:void} ${2:`!p snip.rv = snip.basename or "class_name"`}::${3:function_name}(${4:void})
+{
+  $0
+}
+endsnippet
+
+snippet constr "Constructor" 
+  $1 ($2);
+${1:class_name}::$1 (${2:void})
+{
+  $0
+}
+endsnippet
+
+snippet st "Structure" !
+struct ${1:name}
+{
+  $0
+};
+endsnippet
+
+snippet enum "Enumeration" !
+enum ${1:name}
+{
+  $0
+};
+endsnippet
+
+# vim:ft=snippets:

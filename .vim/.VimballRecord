@@ -1,0 +1,1 @@
+ReplaceWithRegister.vba: call delete('/home/dphoyes/.vim/plugin/ReplaceWithRegister.vim')|call delete('/home/dphoyes/.vim/doc/ReplaceWithRegister.txt')
