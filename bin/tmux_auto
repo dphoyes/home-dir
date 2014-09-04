@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+prev_terminal=`tmux ls | grep -v attached | tail -n1 | cut -d: -f1`
+
+if [ -n "$prev_terminal" ]; then
+	tmux attach -t $prev_terminal
+else
+	tmux
+fi
