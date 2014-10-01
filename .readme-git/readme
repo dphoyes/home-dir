@@ -1,0 +1,5 @@
+git clone --separate-git-dir=.home-dir.git git@github.com:dphoyes/home-dir.git
+mv home-dir/{.,}* .
+rmdir home-dir
+subl .home-dir.git/config
+rm .git

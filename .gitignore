@@ -11,6 +11,8 @@
 !/.config/zsh/
 !/.config/python/
 
+!/.readme-git
+
 !/bin
 /bin/*
 !/bin/fiweor
