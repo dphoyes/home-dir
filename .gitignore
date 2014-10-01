@@ -5,6 +5,7 @@
 !/.gitignore
 !/.zshenv
 !/.tmux.conf
+!/.dircolors
 
 !/.config
 /.config/*

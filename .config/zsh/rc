@@ -27,7 +27,7 @@ DISABLE_CORRECTION="true"
 
 ZSH_TMUX_AUTOSTART=true
 
-if [ -d /usr/share/oh-my-zshs ]; then
+if [ -d /usr/share/oh-my-zsh ]; then
   ZSH=/usr/share/oh-my-zsh
 else
   ZSH=$HOME/.oh-my-zsh
