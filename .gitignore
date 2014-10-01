@@ -6,6 +6,7 @@
 !/.zshenv
 !/.tmux.conf
 !/.dircolors
+!/.profile
 
 !/.config
 /.config/*
