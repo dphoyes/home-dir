@@ -13,6 +13,7 @@ export SAVEHIST=1000
 export HISTSIZE=1000
 export GTK_IM_MODULE=xim
 export PYTHONSTARTUP=~/.config/python/startup
+export MODELSIM_TCL=~/.config/questasim.tcl
 
 
 if [[ $HOST == maelstrom ]]; then
