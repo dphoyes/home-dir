@@ -37,9 +37,13 @@ theme_precmd () {
     if [ $exit_code -ne 0 ]; then
         echo "${fg_bold[red]}[${fg_bold[white]}${exit_code}${fg_bold[red]}] ${fg_bold[white]}:("
     fi
-    git_info=$(git_prompt_info)
-    [ -n "$git_info" ] && echo `git_prompt_info` `git_prompt_status`
+  
+    if [ `whoami` = "dphoyes" ]; then
+      git_info=$(git_prompt_info)
+      [ -n "$git_info" ] && echo `git_prompt_info` `git_prompt_status`
+    fi
 }
 
 autoload -U add-zsh-hook
 add-zsh-hook precmd  theme_precmd
+

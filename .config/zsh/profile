@@ -6,7 +6,7 @@ export XDG_DATA_HOME=$HOME/.local/share/
 export XDG_CONFIG_HOME=$HOME/.config/
 export XDG_CACHE_HOME=$HOME/.cache/
 
-which chromium >/dev/null && export BROWSER=/usr/bin/chromium
+which chromium &>/dev/null && export BROWSER=/usr/bin/chromium
 export WINEPREFIX=$HOME/.local/share/wineprefixes/win32
 export HISTFILE=$XDG_DATA_HOME/zsh/zsh_history
 export SAVEHIST=1000

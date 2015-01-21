@@ -3,7 +3,7 @@
 alias tmux_break='touch /tmp/tmux_break && exit'
 
 alias ls='ls --color=auto'
-alias gvim='gvim -p'
+alias gvim="gvim -p $* &>/dev/null"
 alias octave='octave -q'
 alias scons='scons -Q'
 alias dedebtify_flat='/hdd/media/Dropbox/Flat/Debts/dedebtify_flat'
@@ -17,6 +17,7 @@ alias disk_usage="df -h / /hdd/* /ssd/*"
 
 alias rossource="source /home/dphoyes/devel/EIE/EIE4/HCR/workspace/devel/setup.zsh"
 
+alias mod=module
 alias ros='cd ~/devel/EIE/EIE4/HCR/workspace/; source devel/setup.zsh'
 alias catkin_make='catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python2 -DPYTHON_INCLUDE_DIR=/usr/include/python2.7 -DPYTHON_LIBRARY=/usr/lib/libpython2.7.so'
 alias catkin_make_isolated='catkin_make_isolated -DPYTHON_EXECUTABLE=/usr/bin/python2 -DPYTHON_INCLUDE_DIR=/usr/include/python2.7 -DPYTHON_LIBRARY=/usr/lib/libpython2.7.so'
