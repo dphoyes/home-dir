@@ -27,7 +27,7 @@ export PR_NO_COLOR="%{$terminfo[sgr0]%}"
 P_RETURN_CODE="%(?..%{$fg_bold[red]%}[${PR_WHITE}%?%{$fg_bold[red]%}] ${PR_WHITE}:(
 )"
 P_USER="${USERNAME_COLOUR}%n"
-P_HOST="${HOSTNAME_COLOUR}%m"
+P_HOST="${HOSTNAME_COLOUR}$(hostname -f | cut -d. -f1-2)"
 
 PROMPT='${P_USER}@${P_HOST}${PR_NO_COLOR}> '
 RPROMPT='`[[ -w \`pwd\` ]] && echo "$PR_LIGHT_GREEN" || echo "$PR_RED"`%~ ${PR_WHITE}| %D{%H:%M}${PR_NO_COLOR}'
