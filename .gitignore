@@ -1,3 +1,4 @@
+*.swp
 /*
 /.config/zsh/.zcompdump*
 /.config/zsh/.precmd_colours
