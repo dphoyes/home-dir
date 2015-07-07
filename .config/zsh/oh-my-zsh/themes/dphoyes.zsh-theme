@@ -38,10 +38,18 @@ theme_precmd () {
         echo "${fg_bold[red]}[${fg_bold[white]}${exit_code}${fg_bold[red]}] ${fg_bold[white]}:("
     fi
   
-    if [ `whoami` = "dphoyes" ]; then
-      git_info=$(git_prompt_info)
-      [ -n "$git_info" ] && echo `git_prompt_info` `git_prompt_status`
+    if git_dir=$(git rev-parse --show-toplevel 2>/dev/null); then
+        if [[ $git_dir != "$HOME" ]] || [[ "$(pwd)/" == *"/.git/"* ]]; then
+            if [[ $(git config shell.lightweight-prompt) == "true" ]]; then
+                ref=$(command git symbolic-ref HEAD 2> /dev/null)  || ref=$(command git rev-parse --short HEAD 2> /dev/null)  || return 0
+                echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+            else
+              git_info=$(git_prompt_info)
+              [ -n "$git_info" ] && echo `git_prompt_info` `git_prompt_status`
+            fi
+        fi
     fi
+    unset git_dir
 }
 
 autoload -U add-zsh-hook
