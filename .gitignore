@@ -23,6 +23,7 @@
 !/bin/subl
 !/bin/subl-wait
 !/bin/tmux_auto
+!/bin/install_st2_package_control.py
 
 !/.vimrc
 !/.vim
