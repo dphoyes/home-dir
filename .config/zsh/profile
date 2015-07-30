@@ -5,6 +5,7 @@ export PATH=$HOME/bin:$PATH
 export XDG_DATA_HOME=$HOME/.local/share/
 export XDG_CONFIG_HOME=$HOME/.config/
 export XDG_CACHE_HOME=$HOME/.cache/
+export XDG_MUSIC_DIR=$HOME/Music/
 
 which chromium &>/dev/null && export BROWSER=/usr/bin/chromium
 export WINEPREFIX=$HOME/.local/share/wineprefixes/win32
