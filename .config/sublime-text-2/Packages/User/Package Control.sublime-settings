@@ -1,0 +1,29 @@
+{
+	"auto_upgrade_last_run": null,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"ARM Assembly",
+		"C99",
+		"Case Conversion",
+		"CMake",
+		"LaTeX Word Count",
+		"LaTeXTools",
+		"MakeExecutable",
+		"Markdown Preview",
+		"OpenCL",
+		"OpenGL Shading Language (GLSL)",
+		"Package Control",
+		"PHP-Twig",
+		"Python 3",
+		"RSpec",
+		"Sass",
+		"SideBarEnhancements",
+		"Superlime",
+		"SyncedSideBar",
+		"SystemVerilog",
+		"Text Pastry"
+	]
+}

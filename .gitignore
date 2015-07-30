@@ -1,24 +1,22 @@
-*.swp
-/*
+*
 
 !/.gitignore
 !/.zshenv
 !/.tmux.conf
 !/.dircolors
 !/.profile
+!/.readme-git/
+!/.readme-git/**
 
-!/.config
-/.config/*
-!/.config/zsh/
+!/.config**/
+!/.config/zsh/**
 /.config/zsh/.zcompdump*
 /.config/zsh/.precmd_colours
-!/.config/python/
-!/.config/synapse/
+!/.config/python/**
+!/.config/synapse/**
+!/.config/sublime-text-2/Packages/User/**
 
-!/.readme-git
-
-!/bin
-/bin/*
+!/bin**/
 !/bin/fiweor
 !/bin/subl
 !/bin/subl-wait
@@ -26,8 +24,10 @@
 !/bin/install_st2_package_control.py
 
 !/.vimrc
-!/.vim
+!/.vim/
+!/.vim/**
 
-!/.themes
-/.themes/*
+!/.themes/
 !/.themes/xfce-custom.gtkrc
+
+*.swp

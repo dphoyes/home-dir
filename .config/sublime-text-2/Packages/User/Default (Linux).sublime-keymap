@@ -1,0 +1,6 @@
+[
+        { "keys": ["ctrl+\\"], "command": "reindent" , "args": {"single_line": false} }
+    ,   { "keys": ["ctrl+'"], "command": "show_panel", "args": {"panel": "console", "toggle": true} }
+    ,   { "keys": ["ctrl+alt+s"], "command": "save_all" }
+    ,   { "keys": ["ctrl+q"], "command": "close_project" }
+]
