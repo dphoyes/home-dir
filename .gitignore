@@ -1,7 +1,5 @@
 *.swp
 /*
-/.config/zsh/.zcompdump*
-/.config/zsh/.precmd_colours
 
 !/.gitignore
 !/.zshenv
@@ -12,6 +10,8 @@
 !/.config
 /.config/*
 !/.config/zsh/
+/.config/zsh/.zcompdump*
+/.config/zsh/.precmd_colours
 !/.config/python/
 !/.config/synapse/
 
@@ -26,3 +26,7 @@
 
 !/.vimrc
 !/.vim
+
+!/.themes
+/.themes/*
+!/.themes/xfce-custom.gtkrc
