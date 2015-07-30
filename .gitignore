@@ -10,8 +10,6 @@
 
 !/.config**/
 !/.config/zsh/**
-/.config/zsh/.zcompdump*
-/.config/zsh/.precmd_colours
 !/.config/python/**
 !/.config/synapse/**
 !/.config/sublime-text-2/Packages/User/**
