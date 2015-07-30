@@ -10,6 +10,7 @@
 
 !/.config**/
 !/.config/zsh/**
+!/.config/vim/**
 !/.config/python/**
 !/.config/synapse/**
 !/.config/sublime-text-2/Packages/User/**
