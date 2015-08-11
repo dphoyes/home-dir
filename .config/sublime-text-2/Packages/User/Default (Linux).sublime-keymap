@@ -3,4 +3,5 @@
     ,   { "keys": ["ctrl+'"], "command": "show_panel", "args": {"panel": "console", "toggle": true} }
     ,   { "keys": ["ctrl+alt+s"], "command": "save_all" }
     ,   { "keys": ["ctrl+q"], "command": "close_project" }
+    ,   { "keys": ["ctrl+shift+="], "command": "calculate", "args": {"replace": true} }
 ]

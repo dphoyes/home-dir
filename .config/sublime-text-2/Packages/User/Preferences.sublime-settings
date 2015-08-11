@@ -6,7 +6,8 @@
 	"ignored_packages":
 	[
 		"Vintage",
-		"Markdown Preview"
+		"Markdown Preview",
+		"SyncedSideBar"
 	],
 	"ignored_words":
 	[
