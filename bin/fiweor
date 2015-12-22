@@ -26,41 +26,41 @@ output of \`wmctrl -l\`. A match can be made against any part of each line
 after the workspace number on that line.
 
 Options:
-	-s - Summon the matching window to the current workspace.
-	-g - Go to the workspace of the matching window.
-	-c - Only search for windows on the current workspace.
-	
+  -s - Summon the matching window to the current workspace.
+  -g - Go to the workspace of the matching window.
+  -c - Only search for windows on the current workspace.
+  
   -a - Only search for windows in the current KDE activity.
-	-m - If the specified window is already in focus, create a new window.
+  -m - If the specified window is already in focus, create a new window.
   -t - If the specified window is already in focus, close it instead (toggle).
-	-f - Upon creation of a new window, force that window to be pulled into
-	     focus if it isn't by default. Can cause strange behaviour.
-	-x - Add -x to the \`wmctrl -l\` command; this allows you to match by
-	     WM_CLASS as well as by Window Title.
-	-i - Add -p to the \`wmctrl -l\` command; this allows you to match by
-	     process ID as well as by Window Title.
-	-p PATTERN - Specifies the pattern describing the window to be matched. If
-	     omitted, COMMAND is always run.
-	-h - Display this text and exit.
+  -f - Upon creation of a new window, force that window to be pulled into
+       focus if it isn't by default. Can cause strange behaviour.
+  -x - Add -x to the \`wmctrl -l\` command; this allows you to match by
+       WM_CLASS as well as by Window Title.
+  -i - Add -p to the \`wmctrl -l\` command; this allows you to match by
+       process ID as well as by Window Title.
+  -p PATTERN - Specifies the pattern describing the window to be matched. If
+       omitted, COMMAND is always run.
+  -h - Display this text and exit.
 "
 
 [ -z $1 ] && echo "No parameters given. Try running with -h\n$usage" && exit 1
 
 while getopts "sgfcatmxip:h" opt; do
-	case $opt in
-		s)	mode="R";;
-		g)	mode="a";;
-		f)	forceFocus=1;;
-		c)	mode="a"; currentWS=`wmctrl -d | grep '*' | cut -d ' ' -f 1`;;
+  case $opt in
+    s)  mode="R";;
+    g)  mode="a";;
+    f)  forceFocus=1;;
+    c)  mode="a"; currentWS=`wmctrl -d | grep '*' | cut -d ' ' -f 1`;;
     a)  requireSameActivity=true;;
-		m)	repeatAction="open_many"; currentWin=`xdotool getactivewindow`;;
-		t)	repeatAction="toggle"; currentWin=`xdotool getactivewindow`;;
-		x)	Args=x$Args;;
-		i)	Args=p$Args;;
-		p)	pattern="$OPTARG";;
-		h)	echo $help; exit 0;;
-		?)	echo $usage; exit 1;;
-	esac
+    m)  repeatAction="open_many"; currentWin=`xdotool getactivewindow`;;
+    t)  repeatAction="toggle"; currentWin=`xdotool getactivewindow`;;
+    x)  Args=x$Args;;
+    i)  Args=p$Args;;
+    p)  pattern="$OPTARG";;
+    h)  echo $help; exit 0;;
+    ?)  echo $usage; exit 1;;
+  esac
 done
 shift $(($OPTIND - 1))
 
@@ -74,13 +74,13 @@ shift $(($OPTIND - 1))
 if [ $winID ] && [ "$repeatAction" = "toggle" ] && [[ $currentWin -eq $winID ]]; then
   wmctrl -ic $winID
 elif [ -z $winID ] || ([ "$repeatAction" = "open_many" ] && [[ $currentWin -eq $winID ]]); then
-	[ $forceFocus ] && lastOpened=`wmctrl -l | tail -n 1 | cut -d ' ' -f 1`
-	$* &
-	if [ $forceFocus ]; then
-		while [ "$lastOpened" = "`wmctrl -l | tail -n 1 | cut -d ' ' -f 1`" ]; do
-			sleep 1
-		done
-		wmctrl -i$mode `wmctrl -l | tail -n 1 | cut -d ' ' -f 1`
-	fi
+  [ $forceFocus ] && lastOpened=`wmctrl -l | tail -n 1 | cut -d ' ' -f 1`
+  $* &
+  if [ $forceFocus ]; then
+    while [ "$lastOpened" = "`wmctrl -l | tail -n 1 | cut -d ' ' -f 1`" ]; do
+      sleep 1
+    done
+    wmctrl -i$mode `wmctrl -l | tail -n 1 | cut -d ' ' -f 1`
+  fi
 fi
 return 0
