@@ -8,7 +8,7 @@ if which tmux &>/dev/null; then
         tmux_auto
         if [ -f /tmp/tmux_break ]; then
           rm /tmp/tmux_break
-        else 
+        else
           exit
         fi
       fi
@@ -50,4 +50,3 @@ eval "`dircolors -b ~/.dircolors`"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 setopt no_share_history inc_append_history extended_history
-
