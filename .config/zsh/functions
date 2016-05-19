@@ -15,13 +15,19 @@ timer()
     echo "Duration: $duration ms"
 }
 
+bzhead()
+{
+    bzcat "$1" | head
+}
+
 
 gccrun()
 {
-	gcc *.c && ./a.out
+    gcc *.c && ./a.out
 }
 
 g++run()
 {
     g++ *.cpp && ./a.out
 }
+
