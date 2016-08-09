@@ -31,6 +31,8 @@ DISABLE_CORRECTION="true"
 
 ZSH_TMUX_AUTOSTART=true
 
+mkdir -p $XDG_DATA_HOME/zsh
+
 if [ -d /usr/share/oh-my-zsh ]; then
   ZSH=/usr/share/oh-my-zsh
 else
