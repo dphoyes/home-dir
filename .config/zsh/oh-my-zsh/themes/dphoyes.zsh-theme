@@ -22,7 +22,9 @@ for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
 done
 export PR_NO_COLOR="%{$terminfo[sgr0]%}"
 
-. $ZDOTDIR/.precmd_colours
+[ -f "$ZDOTDIR/.precmd_colours" ] || cp "$ZDOTDIR/.precmd_colours"{.dist,}
+
+. "$ZDOTDIR/.precmd_colours"
 
 P_RETURN_CODE="%(?..%{$fg_bold[red]%}[${PR_WHITE}%?%{$fg_bold[red]%}] ${PR_WHITE}:(
 )"
@@ -37,7 +39,7 @@ theme_precmd () {
     if [ $exit_code -ne 0 ]; then
         echo "${fg_bold[red]}[${fg_bold[white]}${exit_code}${fg_bold[red]}] ${fg_bold[white]}:("
     fi
-  
+
     if git_dir=$(git rev-parse --show-toplevel 2>/dev/null); then
         if [[ $git_dir != "$HOME" ]] || [[ "$(pwd)/" == *"/.git/"* ]]; then
             if [[ $(git config shell.lightweight-prompt) == "true" ]]; then
