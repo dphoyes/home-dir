@@ -1,5 +1,11 @@
-git clone --separate-git-dir=.home-dir.git git@github.com:dphoyes/home-dir.git
-mv home-dir/{.,}* .
-rmdir home-dir
-subl .home-dir.git/config
-rm .git
+#!/bin/bash
+# bash <(curl -s https://raw.githubusercontent.com/dphoyes/home-dir/master/.readme-git/readme)
+
+set -e
+
+[ "$(pwd)" -ef "$HOME" ] || (echo "Change to home-directory first" && exit 1)
+
+git init
+git remote add origin git@github.com:dphoyes/home-dir.git
+git fetch
+git checkout -t origin/master
