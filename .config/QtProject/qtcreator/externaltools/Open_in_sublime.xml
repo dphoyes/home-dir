@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Written on Thu Aug 31 11:01:26 2017 by Qt Creator 3.5.1-->
+<externaltool id="Open_in_sublime">
+    <description>Open in Sublime</description>
+    <displayname>SublimeText</displayname>
+    <category>Text</category>
+    <executable output="ignore" error="ignore" modifiesdocument="yes">
+        <path>subl-wait</path>
+        <arguments>%{CurrentDocument:FilePath}:%{CurrentDocument:Row}:%{CurrentDocument:Column}</arguments>
+        <workingdirectory>%{CurrentDocument:Path}</workingdirectory>
+    </executable>
+</externaltool>
