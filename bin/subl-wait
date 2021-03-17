@@ -1,3 +1,4 @@
 #!/bin/zsh
 
-subl -w $@
+subl -wn "$@"
+
