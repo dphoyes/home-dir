@@ -1,0 +1,51 @@
+#!/bin/bash
+
+set -e
+
+function confirm {
+  local prompt="$* [Y/n] "
+  while true; do
+    local REPLY
+    read -r -p "$prompt" REPLY
+    case "$REPLY" in
+      Y|y)  return 0;;
+      N|n)  return 1;;
+      '')   return 0;;
+    esac
+  done
+}
+
+git_dir=$(git rev-parse --git-dir)
+next_todo=$(head -n1 "$git_dir"/rebase-merge/git-rebase-todo)
+next_command=$(echo "$next_todo" | cut -d' ' -f1)
+next_commit=$(echo "$next_todo" | cut -d' ' -f2)
+if [[ -n $next_commit ]]; then
+  target_tree="$next_commit"~
+else
+  target_tree=$(cat "$git_dir"/rebase-merge/orig-head)
+fi
+[[ -n $target_tree ]] || (echo '$target_tree not set' && false)
+
+prev_head=$(git rev-parse HEAD)
+[[ -n $prev_head ]] || (echo '$prev_head not set' && false)
+
+prev_orig_head=$(cat "$git_dir"/ORIG_HEAD)
+[[ -n $prev_orig_head ]] || (echo '$prev_orig_head not set' && false)
+
+git reset --hard $target_tree
+git reset --soft $prev_head
+
+echo $prev_orig_head > "$git_dir"/ORIG_HEAD
+
+if [[ -f "$git_dir"/rebase-merge/amend ]]; then
+  if [[ $next_command == "p" || $next_command == "pick" ]] && confirm "Squash into next commit?"; then
+    git commit --reuse-message="$next_commit"
+    sed -i -e '1 s/^\s*p\w*/fixup/' "$git_dir"/rebase-merge/git-rebase-todo
+  else
+    git commit -m "Revert rebase edits" --edit
+  fi
+fi
+
+if confirm "Continue rebase?"; then
+  git rebase --continue
+fi

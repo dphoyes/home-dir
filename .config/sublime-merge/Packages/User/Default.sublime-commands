@@ -1,0 +1,17 @@
+[
+    {
+        "caption": "Sync master",
+        "command": "git",
+        "args": {"argv": ["sync-master"]}
+    },
+    {
+        "caption": "Rebase onto master",
+        "command": "git",
+        "args": {"argv": ["rebase", "--keep-empty", "origin/master"]}
+    },
+    {
+        "caption": "Autosquash onto master",
+        "command": "git",
+        "args": {"argv": ["autosquash", "origin/master"]}
+    }
+]

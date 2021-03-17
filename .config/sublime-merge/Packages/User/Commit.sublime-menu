@@ -1,0 +1,7 @@
+[
+    {
+        "caption": "Add new commits before this one",
+        "command": "git",
+        "args": {"argv": ["rebase-interactive-edit-single", "$commit~"]}
+    }
+]

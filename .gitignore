@@ -14,6 +14,7 @@
 !/.config/python/**
 !/.config/synapse/**
 !/.config/sublime-text-2/Packages/User/**
+!/.config/sublime-merge/Packages/User/**
 
 !/bin**/
 !/bin/fiweor
