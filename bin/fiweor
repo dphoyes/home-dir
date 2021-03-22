@@ -78,7 +78,7 @@ elif [ -z $winID ] || ([ "$repeatAction" = "open_many" ] && [[ $currentWin -eq $
   $* &
   if [ $forceFocus ]; then
     while [ "$lastOpened" = "`wmctrl -l | tail -n 1 | cut -d ' ' -f 1`" ]; do
-      sleep 1
+      sleep 0.2
     done
     wmctrl -i$mode `wmctrl -l | tail -n 1 | cut -d ' ' -f 1`
   fi
