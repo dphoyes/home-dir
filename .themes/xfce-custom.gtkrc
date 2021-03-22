@@ -37,6 +37,7 @@ style "tasklist_style"
     xthickness = 5
 }
 
-widget "*Xfce*Panel*"      style "theme-panel"
-widget "*Xfce*pager*"      style "panel_pager"
-widget "*Xfce*tasklist*"   style "tasklist_style"
+widget "*Xfce*Panel*"                style "theme-panel"
+widget "*Xfce*pager*"                style "panel_pager"
+widget "*Xfce*tasklist*"             style "tasklist_style"
+widget "*Xfce*power-manager-plugin*" style "theme-panel"
