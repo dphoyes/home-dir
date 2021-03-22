@@ -26,6 +26,7 @@
 !/.vimrc
 !/.vim/
 !/.vim/**
+/.vim/.netrwhist
 
 !/.themes/
 !/.themes/xfce-custom.gtkrc
