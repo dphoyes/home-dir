@@ -5,6 +5,7 @@
       "execute" : "Return",
       "execute-without-hide" : "<Shift>Return",
       "delete-char" : "BackSpace",
+      "delete-word" : "<Control>BackSpace",
       "alternative-delete-char" : "Delete",
       "next-match" : "Down",
       "prev-match" : "Up",
@@ -22,8 +23,15 @@
       "exit" : "<Control>q"
     },
     "global" : {
-      "ui-type" : "default",
+      "ui-type" : "essential",
       "show-indicator" : false
+    }
+  },
+  "data-sink" : {
+    "global" : {
+      "disabled-plugins" : [
+        "SynapseChromiumPlugin"
+      ]
     }
   }
 }
