@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=my_custom
+Type=X-GNOME-Metatheme
+Comment=
+
+[X-GNOME-Metatheme]
+GtkTheme=my_custom
+MetacityTheme=TraditionalOk
+IconTheme=elementary
+GtkColorScheme=tooltip_fg_color:#ffffff,tooltip_bg_color:#343434
+CursorTheme=OpenZone_White
+CursorSize=32

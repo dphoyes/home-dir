@@ -1,0 +1,96 @@
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained.css");
+
+.mate-panel-menu-bar.background {
+    background-color: #000;
+}
+
+.mate-panel-menu-bar PanelWidget {
+    color: #fff;
+}
+
+/* WnckPager */
+PanelApplet.wnck-applet .wnck-pager {
+    color: rgba(255,255,255,1);
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* Main menu buttons */
+.mate-panel-menu-bar menubar menuitem:hover {
+    color: #fff;
+    background-color: #333;
+    box-shadow: 0 -3px #fff inset;
+}
+
+/* selected WnckPager */
+PanelApplet.wnck-applet .wnck-pager:selected {
+    background-color: #4a90d9;
+}
+
+/* prelight of WnckPager */
+PanelApplet.wnck-applet .wnck-pager:hover {
+    background-color: rgba(255,255,255,0.5);
+}
+
+/* TaskList */
+.mate-panel-menu-bar #PanelApplet button,
+.mate-panel-menu-bar #PanelApplet button.flat,
+.mate-panel-menu-bar #PanelApplet button.toggle,
+.mate-panel-menu-bar #PanelApplet button.flat.toggle {
+    color: #fff;
+    transition: all 200ms ease-out;
+    background-image: none;
+    background-color: transparent;
+    border-image: none;
+    border-style: none;
+    border-width: 0px;
+    border-radius: 0px;
+    box-shadow: none;
+    text-shadow: none;
+    padding: 4px;
+    margin: 0px;
+}
+
+.mate-panel-menu-bar #PanelApplet button image {
+    padding-left: 4px;
+}
+
+.mate-panel-menu-bar #PanelApplet button label {
+    padding-right: 4px;
+}
+
+.mate-panel-menu-bar #PanelApplet button#tasklist-button image {
+    -gtk-icon-shadow: none;
+}
+
+.mate-panel-menu-bar #PanelApplet button:checked,
+.mate-panel-menu-bar #PanelApplet button.flat:checked,
+.mate-panel-menu-bar #PanelApplet button.toggle:checked,
+.mate-panel-menu-bar #PanelApplet button.flat.toggle:checked {
+    background-color: #222;
+}
+
+.mate-panel-menu-bar #PanelApplet button#tasklist-button:checked,
+.mate-panel-menu-bar #PanelApplet button#tasklist-button.flat:checked,
+.mate-panel-menu-bar #PanelApplet button#tasklist-button.toggle:checked,
+.mate-panel-menu-bar #PanelApplet button#tasklist-button.flat.toggle:checked {
+    box-shadow: 0 2px #fff inset;
+}
+
+.mate-panel-menu-bar #PanelApplet button:hover,
+.mate-panel-menu-bar #PanelApplet button.flat:hover,
+.mate-panel-menu-bar #PanelApplet button.toggle:hover,
+.mate-panel-menu-bar #PanelApplet button.flat.toggle:hover {
+    background-color: #333;
+}
+
+.mate-panel-menu-bar #PanelApplet button:checked:hover,
+.mate-panel-menu-bar #PanelApplet button:hover:active,
+.mate-panel-menu-bar #PanelApplet button.flat:checked:hover,
+.mate-panel-menu-bar #PanelApplet button.flat:hover:active,
+.mate-panel-menu-bar #PanelApplet button.toggle:checked:hover,
+.mate-panel-menu-bar #PanelApplet button.toggle:hover:active,
+.mate-panel-menu-bar #PanelApplet button.flat.toggle:checked:hover,
+.mate-panel-menu-bar #PanelApplet button.flat.toggle:hover:active {
+    background-color: #333;
+}
+
