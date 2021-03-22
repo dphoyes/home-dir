@@ -18,7 +18,12 @@ export MODELSIM_TCL=~/.config/questasim.tcl
 
 
 if [[ $HOST == maelstrom ]]; then
-    export PATH=$PATH:$HOME/.gem/ruby/1.9.1/bin:/opt/gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux/bin
+    export PATH=$PATH:$HOME/.node_modules/bin:/opt/gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux/bin
+
+    if which ruby >/dev/null && which gem >/dev/null; then
+        PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+    fi
+    
     export GOPATH=~/devel/go
     export LOGOLIB=/usr/lib/logo/logolib
     export LM_LICENSE_FILE=/opt/altera/13.1/license.dat
