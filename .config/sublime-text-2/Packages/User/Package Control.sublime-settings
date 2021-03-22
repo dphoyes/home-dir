@@ -1,5 +1,6 @@
 {
 	"auto_upgrade_last_run": null,
+	"bootstrapped": true,
 	"in_process_packages":
 	[
 	],
@@ -24,7 +25,6 @@
 		"Sass",
 		"SideBarEnhancements",
 		"Superlime",
-		"SyncedSideBar",
 		"SystemVerilog",
 		"Text Pastry"
 	]
