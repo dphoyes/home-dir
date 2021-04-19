@@ -27,4 +27,7 @@ if [[ $HOST == maelstrom ]]; then
     export GOPATH=~/devel/go
     export LOGOLIB=/usr/lib/logo/logolib
     export LM_LICENSE_FILE=/opt/altera/13.1/license.dat
+elif [[ `uname` == "Darwin" ]]; then
+    export IS_MAC_OS=1
+    export CLICOLOR=1
 fi

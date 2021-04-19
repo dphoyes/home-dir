@@ -2,7 +2,10 @@
 
 alias tmux_break='touch /tmp/tmux_break && exit'
 
-alias ls='ls --color=auto'
+if [[ -z $IS_MAC_OS ]]; then 
+    alias ls='ls --color=auto'
+fi
+
 alias gvim="gvim -p $* &>/dev/null"
 alias octave='octave -q'
 alias scons='scons -Q'

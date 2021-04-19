@@ -40,7 +40,7 @@ echo $prev_orig_head > "$git_dir"/ORIG_HEAD
 if [[ -f "$git_dir"/rebase-merge/amend ]]; then
   if [[ $next_command == "p" || $next_command == "pick" ]] && confirm "Squash into next commit?"; then
     git commit --reuse-message="$next_commit"
-    sed -i -e '1 s/^\s*p\w*/fixup/' "$git_dir"/rebase-merge/git-rebase-todo
+    sed -i -e '1 s/^[[:space:]]*p[[:alpha:]]*/fixup/' "$git_dir"/rebase-merge/git-rebase-todo
   else
     git commit -m "Revert rebase edits" --edit
   fi
